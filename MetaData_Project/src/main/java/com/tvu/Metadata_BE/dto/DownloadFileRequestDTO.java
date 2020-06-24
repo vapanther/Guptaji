@@ -1,7 +1,7 @@
 package com.tvu.Metadata_BE.dto;
 
 public class DownloadFileRequestDTO {
-	
+
 	private String sessionid;
 	private String recordid;
 	public String getSessionid() {
@@ -16,7 +16,7 @@ public class DownloadFileRequestDTO {
 	public void setRecordid(String recordid) {
 		this.recordid = recordid;
 	}
-	
-	
+
+
 
 }

@@ -2,49 +2,55 @@ package com.tvu.Metadata_BE.dto;
 
 public class DownloadFileResponseDTO {
 	
-	private String param1;
-	private String param2;
-	private String param3;
-	private String param4;
-	private String param5;
-	private String param6;
-	public String getParam1() {
-		return param1;
-	}
-	public void setParam1(String param1) {
-		this.param1 = param1;
-	}
-	public String getParam2() {
-		return param2;
-	}
-	public void setParam2(String param2) {
-		this.param2 = param2;
-	}
-	public String getParam3() {
-		return param3;
-	}
-	public void setParam3(String param3) {
-		this.param3 = param3;
-	}
-	public String getParam4() {
-		return param4;
-	}
-	public void setParam4(String param4) {
-		this.param4 = param4;
-	}
-	public String getParam5() {
-		return param5;
-	}
-	public void setParam5(String param5) {
-		this.param5 = param5;
-	}
-	public String getParam6() {
-		return param6;
-	}
-	public void setParam6(String param6) {
-		this.param6 = param6;
-	}
+	private String cmdPath;
+	private String bucketName;
+	private String localSytemPath;
+	private String path;
+	private String starttimestamp;
+	private String endtimestamp;
+	private String filename;
 	
-
+	public String getCmdPath() {
+		return cmdPath;
+	}
+	public void setCmdPath(String cmdPath) {
+		this.cmdPath = cmdPath;
+	}
+	public String getBucketName() {
+		return bucketName;
+	}
+	public void setBucketName(String bucketName) {
+		this.bucketName = bucketName;
+	}
+	public String getLocalSytemPath() {
+		return localSytemPath;
+	}
+	public void setLocalSytemPath(String localSytemPath) {
+		this.localSytemPath = localSytemPath;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public String getStarttimestamp() {
+		return starttimestamp;
+	}
+	public void setStarttimestamp(String starttimestamp) {
+		this.starttimestamp = starttimestamp;
+	}
+	public String getEndtimestamp() {
+		return endtimestamp;
+	}
+	public void setEndtimestamp(String endtimestamp) {
+		this.endtimestamp = endtimestamp;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 	
 }

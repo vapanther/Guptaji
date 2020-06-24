@@ -7,13 +7,19 @@ public class ResponseSessionInfo {
 	private String userid;
 	private String ErrorCode;
 	private String ErrorMessage;
-	private String SessionId;
+	private Integer count;
 	private List<SessionDTO> sessionInfo;
 	public String getUserid() {
 		return userid;
 	}
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer i) {
+		this.count = i;
 	}
 	public String getErrorCode() {
 		return ErrorCode;
@@ -26,12 +32,6 @@ public class ResponseSessionInfo {
 	}
 	public void setErrorMessage(String errorMessage) {
 		ErrorMessage = errorMessage;
-	}
-	public String getSessionId() {
-		return SessionId;
-	}
-	public void setSessionId(String sessionId) {
-		SessionId = sessionId;
 	}
 	public List<SessionDTO> getSessionInfo() {
 		return sessionInfo;

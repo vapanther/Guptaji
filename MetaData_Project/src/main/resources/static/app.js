@@ -1,5 +1,5 @@
-var stompClient = null;
 
+var ws;
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
     $("#disconnect").prop("disabled", !connected);
@@ -13,31 +13,28 @@ function setConnected(connected) {
 }
 
 function connect() {
-    var socket = new SockJS('/ws');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        setConnected(true);
-        console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/ankit/greetings', function (greeting) {
-            showGreeting(JSON.parse(greeting.body).content);
-        });
-    });
+	ws = new WebSocket('ws://localhost:5000/name');
+	ws.onmessage = function(data){
+		showGreeting(data.data);
+	}
+	 setConnected(true);
 }
 
 function disconnect() {
-    if (stompClient !== null) {
-        stompClient.disconnect();
+    if (ws != null) {
+        ws.close();
     }
     setConnected(false);
     console.log("Disconnected");
 }
 
 function sendName() {
-    stompClient.send("/app/hello", {}, JSON.stringify({'name': $("#name").val()}));
+	var data = JSON.stringify({'name': $("#name").val()})
+    ws.send(data);
 }
 
 function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
+    $("#greetings").append("<tr><td> " + message + "</td></tr>");
 }
 
 $(function () {

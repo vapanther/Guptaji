@@ -21,16 +21,16 @@ public class ShortStories implements java.io.Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "sessionid")
 	private Session session;
-	@Column(name = "sourceid")
-	private String sourceid;
+	/*@Column(name = "sourceid")
+	private String sourceid;*/
 	@Column(name="title")
 	private String Title;
 	@Column(name="tags")
 	private String Tag;
 	@Column(name="frontcover")
 	private String FrontCover;
-	@Column(name="aurthor")
-	private String Aurthor;
+	@Column(name="author")
+	private String Author;
 	@Column(name="createdat")
 	private Long CreatedAt;
 	@OneToMany(mappedBy = "shortStory", cascade = CascadeType.ALL,
@@ -72,18 +72,18 @@ public class ShortStories implements java.io.Serializable{
 	}
 	
 	public String getAurthor() {
-		return Aurthor;
+		return Author;
 	}
-	public void setAurthor(String aurthor) {
-		Aurthor = aurthor;
+	public void setAurthor(String author) {
+		Author = author;
 	}
-	
+	/*
 	public String getSourceid() {
 		return sourceid;
 	}
 	public void setSourceid(String sourceid) {
 		this.sourceid = sourceid;
-	}
+	}*/
 	public Long getCreatedAt() {
 		return CreatedAt;
 	}

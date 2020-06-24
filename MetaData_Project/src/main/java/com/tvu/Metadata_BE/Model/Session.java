@@ -17,8 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "session", catalog = "tvu")
 public class Session implements java.io.Serializable{
 	@Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	@Column(name = "id", nullable = false)
 	private String id;
 	@Column(name="title")
 	private String Title;

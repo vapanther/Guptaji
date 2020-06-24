@@ -2,14 +2,27 @@ package com.tvu.Metadata_BE.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonAutoDetect(fieldVisibility=JsonAutoDetect.Visibility.ANY, getterVisibility=JsonAutoDetect.Visibility.NONE,
+setterVisibility=JsonAutoDetect.Visibility.NONE, creatorVisibility=JsonAutoDetect.Visibility.NONE)
 public class ShortStoriesDTO {
 	
+	
+	@JsonProperty("ID")
 	private String ID;
+	@JsonProperty("Title")
 	private String Title;
-	private String Tags;
-	private String Aurthor;
+	@JsonProperty("Tags")
+	private List<String> Tags;
+	@JsonProperty("Author")
+	private String Author;
+	@JsonProperty("CreatedAt")
 	private Long CreatedAt;
+	@JsonProperty("FrontCover")
 	private String FrontCover;
+	@JsonProperty("Scenes")
 	private List<SceneDTO> Scenes;
 	
 	public String getID() {
@@ -24,17 +37,18 @@ public class ShortStoriesDTO {
 	public void setTitle(String title) {
 		Title = title;
 	}
-	public String getTags() {
+	
+	public List<String> getTags() {
 		return Tags;
 	}
-	public void setTags(String tags) {
+	public void setTags(List<String> tags) {
 		Tags = tags;
 	}
 	public String getAurthor() {
-		return Aurthor;
+		return Author;
 	}
-	public void setAurthor(String aurthor) {
-		Aurthor = aurthor;
+	public void setAurthor(String author) {
+		Author = author;
 	}
 	public Long getCreatedAt() {
 		return CreatedAt;

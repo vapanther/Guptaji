@@ -1,81 +1,52 @@
-package com.tvu.Metadata_BE.websocket;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+/*package com.tvu.Metadata_BE.websocket;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.actuate.trace.http.HttpTrace.Principal;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
 
-import com.tvu.Metadata_BE.Model.Records;
-import com.tvu.Metadata_BE.Model.Session;
 import com.tvu.Metadata_BE.dto.DownloadFileRequestDTO;
 import com.tvu.Metadata_BE.dto.DownloadFileResponseDTO;
 import com.tvu.Metadata_BE.dto.Greeting;
 import com.tvu.Metadata_BE.dto.HelloMessage;
-import com.tvu.Metadata_BE.repository.RecordRepository;
-import com.tvu.Metadata_BE.repository.SessionRepository;
+import com.tvu.Metadata_BE.stub.SessionStub;
+import com.tvu.Metadata_BE.stub.SocketService;
 
 @Controller
 public class WebSocketController {
-	
+
 	@Autowired
-	SessionRepository sessionRepo;
+	SocketService socketService;
 	@Autowired
-	RecordRepository recordRepo;
-	
-	@Value("${path}")
-	private String localpath;
-	
+	SessionStub sessionStub;
+
 	@MessageMapping("/hello")
-	@SendTo("/topic/ankit/greetings")
-	public Greeting greeting(@Header("simpSessionId") String sessionId,HelloMessage message) throws Exception {
+	@SendToUser("/topic/test/greetings")
+	public Greeting greeting(@Header("simpSessionId") String sessionId,HelloMessage message,Principal principal) throws Exception {
 		Thread.sleep(1000); // simulated delay
-		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) +"SessionId:-" + sessionId+"!");		
+		String response=socketService.mergeChunks("a","a","a","a","a","a","a");
+		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) +"SessionId:-" + sessionId+"!"+"Response "+response);		
 	}
-	
+
 	@MessageMapping("/download-files")
-	@SendTo("/topic/ankit/greetings1")
-	public DownloadFileResponseDTO getStatus(DownloadFileRequestDTO req) throws Exception {
-		Thread.sleep(1000); // simulated delay
-		String sessionid=req.getSessionid();
-		String recordid=req.getRecordid();
-		Session session=sessionRepo.getOne(sessionid);
-		Records record=recordRepo.getOne(recordid);
-		String param1=session.getPlaceRootPath().split("/")[0];
-		String param2=localpath;
-		String param3="tvuclip://"+session.getPlaceRootPath().split("/")[1]+"/"+session.getProducedBy()+"/"+session.getId()+"/"+record.getSourceId();
-		String param4=Long.toString(record.getStartTimeStamp());
-		String param5=Long.toString(record.getStartTimeStamp());
-		String param6=localpath+"/"+session.getProducedBy()+"_"+record.getId();
-		try {  
-			String line;  
-			//Process p = Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"tree.com /A");
-			Process p = new ProcessBuilder("C:\\PathToExe\\MyExe.exe","param1","param2").start();
-			BufferedReader input =  
-					new BufferedReader  
-					(new InputStreamReader(p.getInputStream()));  
-			while ((line = input.readLine()) != null) {  
-				System.out.println(line);  
-			}  
-			input.close();  
-		}  
-		catch (Exception err) {  
-			err.printStackTrace();  
-		}  
-		return new DownloadFileResponseDTO();
-		//return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+	@SendTo("/tvu/download/status")
+	public String getStatus(DownloadFileRequestDTO req) throws Exception {
+		DownloadFileResponseDTO downloadFileResponseDTO=sessionStub.getParamsInfo(req);
+		String response=socketService.mergeChunks(downloadFileResponseDTO.getCmdPath(), downloadFileResponseDTO.getBucketName(), downloadFileResponseDTO.getLocalSytemPath(), downloadFileResponseDTO.getPath(), downloadFileResponseDTO.getStarttimestamp(), downloadFileResponseDTO.getEndtimestamp(), downloadFileResponseDTO.getFilename());
+		return response;
+
 	}
 	@MessageExceptionHandler
-    @SendTo("/queue/errors")
-    public String handleException(Throwable exception) {
-        return exception.getMessage();
-    }
+	@SendTo("/queue/errors")
+	public String handleException(Throwable exception) {
+		return exception.getMessage();
+	}
 
 }
+*/

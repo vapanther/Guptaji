@@ -1,4 +1,4 @@
-package com.tvu.Metadata_BE.websocket;
+/*package com.tvu.Metadata_BE.websocket;
 
 import java.util.Date;
 
@@ -18,4 +18,4 @@ public class GreetingService {
         simpMessagingTemplate.convertAndSend(WS_MESSAGE_TRANSFER_DESTINATION,
             "Hallo " + " at " + new Date().toString());
     }
-}
+}*/
